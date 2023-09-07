@@ -92,3 +92,8 @@ export const deleteUser = async (req, res) => {
     res.json(error.message);
   }
 };
+
+
+export const logoutUser = async (req, res, next) => {
+    res.clearCookie('token').json('Bye bye');
+  };

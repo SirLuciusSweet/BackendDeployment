@@ -5,6 +5,7 @@ import {
   getAllUsers,
   getUser,
   loginUser,
+  logoutUser,
   updateUser,
   userRegister,
 } from "../controllers/userController.js";
@@ -19,6 +20,8 @@ router.post("/login", loginUser);
 router.get("/getUser", authorization, getUser);
 
 router.get("/all", getAllUsers);
+
+router.get("/logout" , logoutUser)
 
 router.put("/", authorization, updateUser);
 
