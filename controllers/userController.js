@@ -7,12 +7,15 @@ const SECRET_KEY = process.env.SECRET_KEY;
 
 export const userRegister = async (req, res) => {
   try {
-    const {  password } = req.body;
+    const { password } = req.body;
 
     const salt = bcrypt.genSaltSync(9);
     const hashedPassword = bcrypt.hashSync(password, salt);
 
-    const newUser = await User.create({...req.body,  password: hashedPassword });
+    const newUser = await User.create({
+      ...req.body,
+      password: hashedPassword,
+    });
 
     res.json(newUser);
   } catch (error) {
@@ -45,6 +48,8 @@ export const loginUser = async (req, res) => {
     res
       .cookie("token", token, {
         httpOnly: true,
+        sameSite: "none",
+        secure: true,
       })
       .json(user);
   } catch (error) {
@@ -53,8 +58,8 @@ export const loginUser = async (req, res) => {
 };
 
 export const getUser = (req, res) => {
-    res.json(req.user);
-  };
+  res.json(req.user);
+};
 
 export const updateUser = async (req, res) => {
   try {
