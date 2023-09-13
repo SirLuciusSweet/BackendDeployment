@@ -17,7 +17,7 @@ app.use("/user", userRoute);
 
 const MONGO_URI = process.env.MONGO_URI;
 mongoose.set("strictQuery", true);
-connect(MONGO_URI)
+connect("mongodb+srv://admin:1234@riccardodci.ddrwebg.mongodb.net/deployment")
   .then(() => console.log("database Connected"))
   .catch((err) => console.log("Not connected", err.message));
 
